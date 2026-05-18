@@ -50,9 +50,8 @@ export default function HomeScreen({
       title: "DuckPick Studio",
       text:
         language === "ko"
-          ? "덕픽 스튜디오의 모바일 웹게임을 즐겨보세요!"
-          : "Play mobile web games from DuckPick Studio!",
-      url: window.location.origin,
+          ? `설치 없이 바로 즐기는 다양한 모바일 웹게임을 플레이해보세요.\n\n${window.location.origin}`
+          : `Play various mobile web games instantly with no installation required.\n\n${window.location.origin}`,
     }
   
     if (navigator.share) {
@@ -60,13 +59,9 @@ export default function HomeScreen({
         await navigator.share(shareData)
       } catch {}
     } else {
-        await navigator.clipboard.writeText(
-            `${
-              language === "ko"
-                ? "설치 없이 바로 즐기는 다양한 모바일 웹게임을 플레이해보세요."
-                : "Play various mobile web games instantly with no installation required."
-            }\n\n${window.location.origin}`
-          )
+      await navigator.clipboard.writeText(
+        shareData.text
+      )
   
       alert(
         language === "ko"
