@@ -60,7 +60,13 @@ export default function HomeScreen({
         await navigator.share(shareData)
       } catch {}
     } else {
-      await navigator.clipboard.writeText(window.location.origin)
+        await navigator.clipboard.writeText(
+            `${
+              language === "ko"
+                ? "설치 없이 바로 즐기는 다양한 모바일 웹게임을 플레이해보세요."
+                : "Play various mobile web games instantly with no installation required."
+            }\n\n${window.location.origin}`
+          )
   
       alert(
         language === "ko"
