@@ -45,6 +45,30 @@ export default function HomeScreen({
     await installPrompt.userChoice
     setInstallPrompt(null)
   }}
+  onShare={async () => {
+    const shareData = {
+      title: "DuckPick Studio",
+      text:
+        language === "ko"
+          ? "덕픽 스튜디오의 모바일 웹게임을 즐겨보세요!"
+          : "Play mobile web games from DuckPick Studio!",
+      url: window.location.origin,
+    }
+  
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData)
+      } catch {}
+    } else {
+      await navigator.clipboard.writeText(window.location.origin)
+  
+      alert(
+        language === "ko"
+          ? "링크가 복사되었습니다."
+          : "Link copied."
+      )
+    }
+  }}
   onToggleLanguage={() => {
     setLanguage((prev) => (prev === "ko" ? "en" : "ko"))
   }}

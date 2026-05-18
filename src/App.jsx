@@ -31,6 +31,7 @@ export default function App() {
   language={language}
   setLanguage={setLanguage}
   installPrompt={installPrompt}
+
   setInstallPrompt={setInstallPrompt}
 />
         )}
@@ -39,7 +40,7 @@ export default function App() {
           <div style={styles.infoPage}>
             <div style={styles.pageTabs}>
               <button style={styles.homeBtn} onClick={() => setPage("home")}>
-                Home
+               {t.home}
               </button>
               <button style={styles.tabBtn} onClick={() => setPage("about")}>
                 {t.about}

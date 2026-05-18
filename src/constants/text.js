@@ -1,5 +1,6 @@
 export const TEXT = {
     ko: {
+        share: "공유",
         install: "설치",
         langButton: "KO / EN",
         title: "덕픽 스튜디오",
@@ -52,6 +53,7 @@ export const TEXT = {
     },
 
     en: {
+        share: "Share",
         install: "Install",
         langButton: "KO / EN",
         title: "DUCKPICK STUDIO",
