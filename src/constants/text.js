@@ -1,5 +1,6 @@
 export const TEXT = {
     ko: {
+        home: "메인",
         share: "공유",
         install: "설치",
         langButton: "KO / EN",
@@ -53,6 +54,7 @@ export const TEXT = {
     },
 
     en: {
+        home: "Home",
         share: "Share",
         install: "Install",
         langButton: "KO / EN",
