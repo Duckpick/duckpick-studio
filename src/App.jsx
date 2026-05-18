@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import HomeScreen from "./screens/HomeScreen"
 import { TEXT } from "./constants/text"
@@ -6,18 +6,33 @@ import { COLORS, LAYOUT, FONT } from "./styles/theme"
 
 export default function App() {
   const [page, setPage] = useState("home")
+  const [installPrompt, setInstallPrompt] = useState(null)
   const [language, setLanguage] = useState("ko")
   const t = TEXT[language]
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault()
+      setInstallPrompt(e)
+    }
+  
+    window.addEventListener("beforeinstallprompt", handler)
+  
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handler)
+    }
+  }, [])
 
   return (
     <div style={styles.page}>
       <div style={styles.app}>
         {page === "home" && (
           <HomeScreen
-            onPageChange={setPage}
-            language={language}
-            setLanguage={setLanguage}
-          />
+  onPageChange={setPage}
+  language={language}
+  setLanguage={setLanguage}
+  installPrompt={installPrompt}
+  setInstallPrompt={setInstallPrompt}
+/>
         )}
 
         {page !== "home" && (

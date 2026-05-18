@@ -10,7 +10,13 @@ import { COLORS } from "../styles/theme"
 
 const FILTERS = ["ALL", "MEMORY", "PUZZLE", "SIMULATION"]
 
-export default function HomeScreen({ onPageChange, language, setLanguage }) {
+export default function HomeScreen({
+    onPageChange,
+    language,
+    setLanguage,
+    installPrompt,
+    setInstallPrompt,
+  }) {
     const [filter, setFilter] = useState("ALL")
 
     const t = TEXT[language]
@@ -22,12 +28,27 @@ export default function HomeScreen({ onPageChange, language, setLanguage }) {
 
     return (
         <>
-            <Header
-                t={t}
-                onToggleLanguage={() => {
-                    setLanguage((prev) => (prev === "ko" ? "en" : "ko"))
-                }}
-            />
+<Header
+  t={t}
+  installPrompt={installPrompt}
+  onInstall={async () => {
+    if (!installPrompt) {
+      alert(
+        language === "ko"
+          ? "브라우저 메뉴에서 '홈 화면에 추가'를 선택하세요."
+          : "Use your browser menu and choose 'Add to Home Screen'."
+      )
+      return
+    }
+
+    installPrompt.prompt()
+    await installPrompt.userChoice
+    setInstallPrompt(null)
+  }}
+  onToggleLanguage={() => {
+    setLanguage((prev) => (prev === "ko" ? "en" : "ko"))
+  }}
+/>
 
 <div style={styles.filterSelectWrap}>
   <select

@@ -1,14 +1,18 @@
 import { IMAGES } from "../constants/images"
 import { COLORS, SHADOWS } from "../styles/theme"
 
-export default function Header({ t, onToggleLanguage }) {
+export default function Header({ t, onToggleLanguage, onInstall }) {
   return (
     <div style={styles.wrap}>
-      <div style={styles.topRow}>
-        <button style={styles.langBtn} onClick={onToggleLanguage}>
-          {t.langButton}
-        </button>
-      </div>
+<div style={styles.topRow}>
+  <button style={styles.installBtn} onClick={onInstall}>
+    {t.install}
+  </button>
+
+  <button style={styles.langBtn} onClick={onToggleLanguage}>
+    {t.langButton}
+  </button>
+</div>
 
       <div style={styles.brandBox}>
         <img src={IMAGES.brand.symbol} alt="DuckPick" style={styles.logo} />
@@ -28,6 +32,7 @@ const styles = {
   topRow: {
     display: "flex",
     justifyContent: "flex-end",
+    gap: "8px",
     marginBottom: "10px",
   },
 
@@ -76,5 +81,15 @@ const styles = {
     fontWeight: "500",
     textAlign: "center",
     boxShadow: SHADOWS.card,
+  },
+  installBtn: {
+    border: `1px solid ${COLORS.green}`,
+    background: COLORS.green,
+    color: COLORS.white,
+    borderRadius: "10px",
+    padding: "7px 10px",
+    fontSize: "11px",
+    fontWeight: "700",
+    cursor: "pointer",
   },
 }
